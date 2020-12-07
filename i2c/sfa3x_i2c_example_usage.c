@@ -42,30 +42,31 @@
 
 int main(void) {
     int16_t error = 0;
-    // char serial_id[32];
 
     sensirion_i2c_hal_init();
 
-    /*
-     * error = sfa3x_get_serial_number(serial_id,32);
-     * if (error != NO_ERROR) {
-     *     printf("Error reading sfa3x serial: %i\n", error);
-     * } else {
-     *     printf("Serial Number: %s\n", serial_id);
-     * }
-     */
-
-    // TODO: Start Measurement
+    error = sfa3x_start_continuous_measurement();
+    if (error) {
+        fprintf(stderr, "Error starting measurement: %i\n", error);
+    }
 
     for (;;) {
+        int16_t hcho;
+        int16_t humidity;
+        int16_t temperature;
 
-        // TODO: Read Measurement
+    sensirion_i2c_hal_sleep_usec(500000);
+
+        error = sfa3x_read_measured_values(&hcho, &humidity,
+                &temperature);
 
         if (error) {
-            printf("Error reading measurement values: %i\n", error);
+            fprintf(stderr, "Error reading measurement values: %i\n", error);
         } else {
-
-            // TODO: Print Measurement
+            printf("Measurement:\n");
+            printf("  Formaldehyde concentration: %f\n", hcho / 5.0f);
+            printf("  Relative humidity: %f\n", humidity / 100.0f);
+            printf("  Temperature: %f\n", temperature / 200.0f);
         }
     }
 
