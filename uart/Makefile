@@ -1,6 +1,6 @@
 common_sources = sensirion_config.h sensirion_common.h sensirion_common.c
 uart_sources = sensirion_uart_hal.h sensirion_shdlc.h sensirion_shdlc.c
-sfa3x_sources = sfa3x-uart.h sfa3x-uart.c
+sfa3x_sources = sfa3x_uart.h sfa3x_uart.c
 
 uart_implementation = sensirion_uart_hal.c
 

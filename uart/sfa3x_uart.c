@@ -29,7 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "sfa3x-uart.h"
+#include "sfa3x_uart.h"
 #include "sensirion_common.h"
 #include "sensirion_shdlc.h"
 #include "sensirion_uart_hal.h"

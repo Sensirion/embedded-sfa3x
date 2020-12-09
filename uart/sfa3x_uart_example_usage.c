@@ -33,7 +33,7 @@
 
 #include "sensirion_common.h"
 #include "sensirion_uart_hal.h"
-#include "sfa3x-uart.h"
+#include "sfa3x_uart.h"
 
 /**
  * TO USE CONSOLE OUTPUT (PRINTF) AND PLATFORM

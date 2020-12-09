@@ -33,7 +33,7 @@
 #include "sensirion_shdlc.h"
 #include "sensirion_test_setup.h"
 #include "sensirion_uart_hal.h"
-#include "sfa3x-uart.h"
+#include "sfa3x_uart.h"
 #include <inttypes.h>
 #include <stdio.h>
 
