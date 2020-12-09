@@ -33,7 +33,7 @@
 #include "sensirion_i2c.h"
 #include "sensirion_i2c_hal.h"
 #include "sensirion_test_setup.h"
-#include "sfa3x-i2c.h"
+#include "sfa3x_i2c.h"
 #include <inttypes.h>
 #include <stdio.h>
 

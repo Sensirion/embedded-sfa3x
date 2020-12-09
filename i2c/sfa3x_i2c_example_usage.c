@@ -33,7 +33,7 @@
 
 #include "sensirion_common.h"
 #include "sensirion_i2c_hal.h"
-#include "sfa3x-i2c.h"
+#include "sfa3x_i2c.h"
 
 /**
  * TO USE CONSOLE OUTPUT (PRINTF) IF NOT PRESENT ON YOUR PLATFORM
