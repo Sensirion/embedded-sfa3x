@@ -1,0 +1,11 @@
+stages:
+  - build
+
+test:
+  stage: build
+  image:
+    name: sensirion/embedded-ci:2.3.0
+  tags: [linux, docker]
+  script:
+    - cd uart && make && cd -
+    - cd i2c && make && cd -
