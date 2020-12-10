@@ -66,9 +66,9 @@ int main(void) {
             fprintf(stderr, "Error reading measurement values: %i\n", error);
         } else {
             printf("Measurement:\n");
-            printf("  Formaldehyde concentration: %f\n", hcho / 5.0f);
-            printf("  Relative humidity: %f\n", relative_humidity / 100.0f);
-            printf("  Temperature: %f\n", temperature / 200.0f);
+            printf("  Formaldehyde concentration: %.1f\n", hcho / 5.0f);
+            printf("  Relative humidity: %.2f\n", relative_humidity / 100.0f);
+            printf("  Temperature: %.2f\n", temperature / 200.0f);
         }
 
         sensirion_uart_hal_sleep_usec(500000);
