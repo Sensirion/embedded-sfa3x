@@ -64,9 +64,9 @@ int main(void) {
             fprintf(stderr, "Error reading measurement values: %i\n", error);
         } else {
             printf("Measurement:\n");
-            printf("  Formaldehyde concentration: %f\n", hcho / 5.0f);
-            printf("  Relative humidity: %f\n", humidity / 100.0f);
-            printf("  Temperature: %f\n", temperature / 200.0f);
+            printf("  Formaldehyde concentration: %f.1\n", hcho / 5.0f);
+            printf("  Relative humidity: %f.2\n", humidity / 100.0f);
+            printf("  Temperature: %f.2\n", temperature / 200.0f);
         }
     }
 
