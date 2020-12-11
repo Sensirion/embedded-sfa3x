@@ -45,6 +45,20 @@ int main(void) {
 
     sensirion_i2c_hal_init();
 
+    error = sfa3x_device_reset();
+    if (error) {
+        printf("Error resetting device: %i\n", error);
+        return -1;
+    }
+
+    uint8_t device_marking[42];
+    error = sfa3x_get_device_marking(&device_marking[0], sizeof(device_marking));
+    if (error) {
+        printf("Error getting device marking: %i\n", error);
+        return -1;
+    }
+    printf("Device marking: %s\n", device_marking);
+
     // Start Measurement
     error = sfa3x_start_continuous_measurement();
     if (error) {
