@@ -8,5 +8,5 @@ These drivers are not meant to be used at the same time.
 
 To compile the example usage of the drivers follow the instructions in the
 README file in the corresponding folder:
- * [./i2c/README.md]()
- * [./uart/README.md]()
+ * [./i2c/README.md](i2c/README.md)
+ * [./uart/README.md](uart/README.md)

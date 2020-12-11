@@ -29,8 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef sfa3x_H
-#define sfa3x_H
+#ifndef SFA3X_I2C_H
+#define SFA3X_I2C_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -101,4 +101,4 @@ int16_t sfa3x_device_reset(void);
 }
 #endif
 
-#endif /* sfa3x_H */
+#endif /* SFA3X_I2C_H */

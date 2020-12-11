@@ -2,9 +2,9 @@ common_sources = sensirion_config.h sensirion_common.h sensirion_common.c
 uart_sources = sensirion_uart_hal.h sensirion_shdlc.h sensirion_shdlc.c
 sfa3x_sources = sfa3x_uart.h sfa3x_uart.c
 
-uart_implementation = sensirion_uart_hal.c
+uart_implementation ?= sensirion_uart_hal.c
 
-CFLAGS = -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC
+CFLAGS = -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC -I.
 
 .PHONY: all clean
 

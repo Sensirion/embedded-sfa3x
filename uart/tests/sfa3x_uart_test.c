@@ -30,51 +30,57 @@
  */
 
 #include "sensirion_common.h"
-#include "sensirion_i2c.h"
-#include "sensirion_i2c_hal.h"
+#include "sensirion_shdlc.h"
 #include "sensirion_test_setup.h"
-#include "sfa3x_i2c.h"
+#include "sensirion_uart_hal.h"
+#include "sfa3x_uart.h"
 #include <inttypes.h>
 #include <stdio.h>
 
-TEST_GROUP (sfa3x_Tests) {
+TEST_GROUP (SFA3X_Tests) {
     void setup() {
-        sensirion_i2c_hal_init();
+        int16_t error;
+        error = sensirion_uart_hal_init();
+        CHECK_ZERO_TEXT(error, "sensirion_uart_hal_init");
     }
 
     void teardown() {
         int16_t error;
-        error = sfa3x_reset_device();
+
+        error = sfa3x_device_reset();
         CHECK_ZERO_TEXT(error, "sfa3x_device_reset");
-        sensirion_i2c_hal_free();
+
+        error = sensirion_uart_hal_free();
+        CHECK_ZERO_TEXT(error, "sensirion_uart_hal_free");
     }
 };
 
-TEST (sfa3x_Tests, sfa3x_Test_start_continuous_measurement) {
+TEST (SFA3X_Tests, SFA3X_Test_start_continuous_measurement) {
     int16_t error;
     error = sfa3x_start_continuous_measurement();
     CHECK_ZERO_TEXT(error, "sfa3x_start_continuous_measurement");
 }
 
-TEST (sfa3x_Tests, sfa3x_Test_stop_measurement) {
+TEST (SFA3X_Tests, SFA3X_Test_stop_measurement) {
     int16_t error;
     error = sfa3x_stop_measurement();
     CHECK_ZERO_TEXT(error, "sfa3x_stop_measurement");
 }
 
-TEST (sfa3x_Tests, sfa3x_Test_read_measured_values) {
+TEST (SFA3X_Tests, SFA3X_Test_read_measured_values_output_format_2) {
     int16_t error;
     int16_t hcho;
-    int16_t humidity;
+    int16_t relative_humidity;
     int16_t temperature;
-    error = sfa3x_read_measured_values(&hcho, &humidity, &temperature);
-    CHECK_ZERO_TEXT(error, "sfa3x_read_measured_values");
+    error = sfa3x_read_measured_values_output_format_2(
+        &hcho, &relative_humidity, &temperature);
+    CHECK_ZERO_TEXT(error, "sfa3x_read_measured_values_output_format_2");
     printf("hcho: %i\n", hcho);
-    printf("humidity: %i\n", humidity);
+    printf("relative_humidity: %i\n", relative_humidity);
     printf("temperature: %i\n", temperature);
 }
 
-TEST (sfa3x_Tests, sfa3x_Test_get_device_marking) {
+TEST (SFA3X_Tests, SFA3X_Test_get_device_marking) {
     int16_t error;
     uint8_t device_marking[42];
     uint8_t device_marking_size = 42;
@@ -83,7 +89,7 @@ TEST (sfa3x_Tests, sfa3x_Test_get_device_marking) {
     printf("device_marking: %s\n", device_marking);
 }
 
-TEST (sfa3x_Tests, sfa3x_Test_device_reset) {
+TEST (SFA3X_Tests, SFA3X_Test_device_reset) {
     int16_t error;
     error = sfa3x_device_reset();
     CHECK_ZERO_TEXT(error, "sfa3x_device_reset");

@@ -29,8 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef sfa3x_H
-#define sfa3x_H
+#ifndef SFA3X_UART_H
+#define SFA3X_UART_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -78,6 +78,16 @@ int16_t sfa3x_read_measured_values_output_format_2(int16_t* hcho,
                                                    int16_t* temperature);
 
 /**
+ * sfa3x_get_device_marking() - Gets the device marking from the device.
+ *
+ * @param device_marking String containing the device marking.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sfa3x_get_device_marking(uint8_t* device_marking,
+                                 uint8_t device_marking_size);
+
+/**
  * sfa3x_device_reset() - Executes a reset on the device.
  *
  * @note The device will reply before executing the reset.
@@ -90,4 +100,4 @@ int16_t sfa3x_device_reset(void);
 }
 #endif
 
-#endif /* sfa3x_H */
+#endif /* SFA3X_UART_H */

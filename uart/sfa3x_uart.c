@@ -104,6 +104,31 @@ int16_t sfa3x_read_measured_values_output_format_2(int16_t* hcho,
     return NO_ERROR;
 }
 
+int16_t sfa3x_get_device_marking(uint8_t* device_marking,
+                                 uint8_t device_marking_size) {
+    struct sensirion_shdlc_rx_header header;
+    uint8_t buffer[522];
+    struct sensirion_shdlc_buffer frame;
+    sensirion_shdlc_begin_frame(&frame, &buffer[0], 0xD0, 0x00, 1);
+    sensirion_shdlc_add_uint8_t_to_frame(&frame, 0x06);
+
+    sensirion_shdlc_finish_frame(&frame);
+    int16_t error = sensirion_shdlc_tx_frame(&frame);
+    if (error) {
+        return error;
+    }
+
+    sensirion_uart_hal_sleep_usec(10000);
+
+    error = sensirion_shdlc_rx_inplace(&frame, 255, &header);
+    if (error) {
+        return error;
+    }
+    sensirion_common_copy_bytes(&buffer[0], device_marking,
+                                device_marking_size);
+    return NO_ERROR;
+}
+
 int16_t sfa3x_device_reset() {
     struct sensirion_shdlc_rx_header header;
     uint8_t buffer[12];
@@ -122,5 +147,6 @@ int16_t sfa3x_device_reset() {
     if (error) {
         return error;
     }
+    sensirion_uart_hal_sleep_usec(200000);
     return NO_ERROR;
 }
