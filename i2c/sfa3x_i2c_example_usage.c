@@ -58,13 +58,18 @@ int main(void) {
         int16_t hcho;
         int16_t humidity;
         int16_t temperature;
+
+        sensirion_i2c_hal_sleep_usec(500000);
+
         error = sfa3x_read_measured_values(&hcho, &humidity, &temperature);
+
         if (error) {
             printf("Error executing sfa3x_read_measured_values(): %i\n", error);
         } else {
-            printf("hcho: %i\n", hcho);
-            printf("humidity: %i\n", humidity);
-            printf("temperature: %i\n", temperature);
+            printf("Measurement:\n");
+            printf("  Formaldehyde concentration: %.1f\n", hcho / 5.0f);
+            printf("  Relative humidity: %.2f\n", humidity / 100.0f);
+            printf("  Temperature: %.2f\n", temperature / 200.0f);
         }
     }
 
