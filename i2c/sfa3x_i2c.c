@@ -35,19 +35,31 @@
 #include "sensirion_i2c_hal.h"
 
 int16_t sfa3x_start_continuous_measurement() {
+    int16_t error;
     uint8_t buffer[2];
     uint16_t offset = 0;
     offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x06);
 
-    return sensirion_i2c_write_data(93, &buffer[0], offset);
+    error = sensirion_i2c_write_data(93, &buffer[0], offset);
+    if (error) {
+        return error;
+    }
+    sensirion_i2c_hal_sleep_usec(1000);
+    return NO_ERROR;
 }
 
 int16_t sfa3x_stop_measurement() {
+    int16_t error;
     uint8_t buffer[2];
     uint16_t offset = 0;
     offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x104);
 
-    return sensirion_i2c_write_data(93, &buffer[0], offset);
+    error = sensirion_i2c_write_data(93, &buffer[0], offset);
+    if (error) {
+        return error;
+    }
+    sensirion_i2c_hal_sleep_usec(50000);
+    return NO_ERROR;
 }
 
 int16_t sfa3x_read_measured_values(int16_t* hcho, int16_t* humidity,
@@ -98,9 +110,15 @@ int16_t sfa3x_get_device_marking(uint8_t* device_marking,
 }
 
 int16_t sfa3x_device_reset() {
+    int16_t error;
     uint8_t buffer[2];
     uint16_t offset = 0;
     offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0xD304);
 
-    return sensirion_i2c_write_data(93, &buffer[0], offset);
+    error = sensirion_i2c_write_data(93, &buffer[0], offset);
+    if (error) {
+        return error;
+    }
+    sensirion_i2c_hal_sleep_usec(100000);
+    return NO_ERROR;
 }

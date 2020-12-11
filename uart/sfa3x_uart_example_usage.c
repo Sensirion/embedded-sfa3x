@@ -43,35 +43,22 @@
 int main(void) {
     int16_t error = 0;
 
-    error = sensirion_uart_hal_init();
-    if (error) {
-        fprintf(stderr, "Error initializing UART: %i\n", error);
-        return -1;
-    }
+    sensirion_uart_hal_init();
 
+    // Start Measurement
     error = sfa3x_start_continuous_measurement();
     if (error) {
-        fprintf(stderr, "Error starting measurement: %i\n", error);
-        return -1;
+        printf("Error executing sfa3x_start_continuous_measurement(): %i\n",
+               error);
     }
 
     for (;;) {
-        int16_t hcho;
-        int16_t relative_humidity;
-        int16_t temperature;
-        error = sfa3x_read_measured_values_output_format_2(
-                &hcho, &relative_humidity, &temperature);
+        // Read Measurement
+    }
 
-        if (error) {
-            fprintf(stderr, "Error reading measurement values: %i\n", error);
-        } else {
-            printf("Measurement:\n");
-            printf("  Formaldehyde concentration: %.1f\n", hcho / 5.0f);
-            printf("  Relative humidity: %.2f\n", relative_humidity / 100.0f);
-            printf("  Temperature: %.2f\n", temperature / 200.0f);
-        }
-
-        sensirion_uart_hal_sleep_usec(500000);
+    error = sfa3x_stop_measurement();
+    if (error) {
+        printf("Error executing sfa3x_stop_measurement(): %i\n", error);
     }
 
     return 0;

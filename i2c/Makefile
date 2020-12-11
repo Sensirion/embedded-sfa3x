@@ -2,9 +2,9 @@ common_sources = sensirion_config.h sensirion_common.h sensirion_common.c
 i2c_sources = sensirion_i2c_hal.h sensirion_i2c.h sensirion_i2c.c
 sfa3x_sources = sfa3x_i2c.h sfa3x_i2c.c
 
-i2c_implementation = sensirion_i2c_hal.c
+i2c_implementation ?= sensirion_i2c_hal.c
 
-CFLAGS = -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC
+CFLAGS = -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC -I.
 
 .PHONY: all clean
 
