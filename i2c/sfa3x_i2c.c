@@ -3,10 +3,10 @@
  *
  * Generator:           0.2.0
  * Yaml Version:        0.1.0
- * Template Version:    0.1.0
+ * Template Version:    0.1.1
  */
 /*
- * Copyright (c) 2020, Sensirion AG
+ * Copyright (c) 2021, Sensirion AG
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -81,7 +81,7 @@ int16_t sfa3x_read_measured_values(int16_t* hcho, int16_t* humidity,
         return error;
     }
 
-    sensirion_i2c_hal_sleep_usec(2000);
+    sensirion_i2c_hal_sleep_usec(5000);
 
     error = sensirion_i2c_read_data_inplace(93, &buffer[0], 6);
     if (error) {
