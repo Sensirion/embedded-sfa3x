@@ -6,6 +6,10 @@ uart_implementation ?= sensirion_uart_hal.c
 
 CFLAGS = -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC -I.
 
+ifdef CI
+    CFLAGS += -Werror
+endif
+
 .PHONY: all clean
 
 all: sfa3x_uart_example_usage

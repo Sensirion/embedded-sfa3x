@@ -3,10 +3,10 @@
  *
  * Generator:           0.2.0
  * Yaml Version:        0.1.0
- * Template Version:    0.1.0
+ * Template Version:    0.1.1
  */
 /*
- * Copyright (c) 2020, Sensirion AG
+ * Copyright (c) 2021, Sensirion AG
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,12 +68,6 @@ int16_t sfa3x_stop_measurement(void);
 /**
  * sfa3x_read_measured_values() - Returns the new measurement results as
  * integers.
- *
- * @note This command is only available in measurement mode. The firmware
- * updates the measurement values every second. Polling data with a faster
- * sampling rate will return the same values. The first measurement is available
- * 1 second after the start measurement command is issued. Any readout prior to
- * this will return zero initialized values.
  *
  * @param hcho Formaldehyde concentration in ppb with a scaling of 5.
  *

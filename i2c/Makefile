@@ -6,6 +6,10 @@ i2c_implementation ?= sensirion_i2c_hal.c
 
 CFLAGS = -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC -I.
 
+ifdef CI
+    CFLAGS += -Werror
+endif
+
 .PHONY: all clean
 
 all: sfa3x_i2c_example_usage

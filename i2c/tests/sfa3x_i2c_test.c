@@ -3,10 +3,10 @@
  *
  * Generator:           0.2.0
  * Yaml Version:        0.1.0
- * Template Version:    0.1.0
+ * Template Version:    0.1.1
  */
 /*
- * Copyright (c) 2020, Sensirion AG
+ * Copyright (c) 2021, Sensirion AG
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
