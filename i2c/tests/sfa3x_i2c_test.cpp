@@ -40,6 +40,7 @@
 #include "sensirion_i2c.h"
 #include "sensirion_i2c_hal.h"
 #include "sensirion_test_setup.h"
+#include "i2c_mux.h"
 #include "sfa3x_i2c.h"
 #include <inttypes.h>
 #include <stdio.h>
@@ -47,6 +48,10 @@
 TEST_GROUP (SFA3X_Tests) {
     void setup() {
         sensirion_i2c_hal_init();
+
+        // Select MUX 2 channel 5 (SFA3x) on ch-sta-p-rp0002
+        int16_t error = sensirion_i2c_mux_set_single_channel(0x72, 5);
+        CHECK_EQUAL_ZERO_TEXT(error, "sensirion_i2c_mux_set_single_channel");
     }
 
     void teardown() {
