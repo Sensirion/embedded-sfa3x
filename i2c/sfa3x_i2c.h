@@ -3,7 +3,7 @@
  *
  * Generator:           0.2.0
  * Yaml Version:        0.1.0
- * Template Version:    0.1.1
+ * Template Version:    0.1.1-32-g825e6f9
  */
 /*
  * Copyright (c) 2021, Sensirion AG

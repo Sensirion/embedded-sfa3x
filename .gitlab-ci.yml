@@ -1,7 +1,8 @@
 stages:
   - build
+  - test
 
-test:
+build:
   stage: build
   image:
     name: sensirion/embedded-ci:2.3.0
@@ -9,3 +10,13 @@ test:
   script:
     - cd uart && make && cd -
     - cd i2c && make && cd -
+
+test:
+  stage: test
+  image: registry.gitlab.sensirion.lokal/sensirion/docker/docker-rpi-testbed:1.1.0
+  tags: [mso-sw-testbed-2]
+  script:
+    - cd i2c/
+    - git clone -b 2.0.0 https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab/MSO-SW/drivers/testbed/i2c-mux-testbed.git
+    - cd tests/
+    - make test
