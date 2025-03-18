@@ -4,6 +4,8 @@ Embedded I2C and UART drivers for the Sensirion sfa3x sensor.
 The I2C driver can be found in the `i2c` directory and the UART driver in
 the `uart` directory.
 
+For I2C you can also find a newer dedicated library here: https://github.com/Sensirion/embedded-i2c-sfa3x
+
 These drivers are not meant to be used at the same time.
 
 To compile the example usage of the drivers follow the instructions in the
